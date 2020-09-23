@@ -1,0 +1,55 @@
+import React, { useState } from "react"
+import { gradients, uniqueTags as allTags } from "../gradients"
+import GradientsList from "./GradientsList"
+import GradientsSelect from "./GradientsSelect"
+
+const Gradients = () => {
+  const [filter, setFilter] = useState("all")
+  const displayedList = gradients.filter((el) => {
+    if (filter === "all") {
+      return true
+    }
+    return el.tags.includes(filter)
+  })
+  return (
+    <>
+      <GradientsSelect tags={allTags} filter={filter} setFilter={setFilter} />
+      <GradientsList list={displayedList} />
+    </>
+  )
+}
+
+export default Gradients
+
+
+import React from "react"
+
+const GradientsSelect = (props) => {
+  const { filter, tags, setFilter } = props
+  const handleSelectChange = (e) => {
+    setFilter(e.target.value)
+  }
+  return (
+    <div className="input-group mb-3">
+      <label className="input-group-text" htmlFor="select">
+        Filtrer par tag
+      </label>
+      <select
+        className="form-select"
+        id="select"
+        value={filter}
+        onChange={handleSelectChange}
+      >
+        <option value="all">Tous</option>
+        {tags.map((el) => (
+          <option key={el} value={el}>
+            {el}
+          </option>
+        ))}
+      </select>
+    </div>
+  )
+}
+
+export default GradientsSelect
+
