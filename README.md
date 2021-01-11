@@ -1,3 +1,5 @@
+A monopage React App featuring a dynamic list of background gradients.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
